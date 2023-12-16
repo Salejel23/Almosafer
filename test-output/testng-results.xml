@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="6" total="7" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-12-16T17:09:14 EET" name="Default suite" finished-at="2023-12-16T17:09:40 EET" duration-ms="25690">
+    <groups>
+    </groups>
+    <test started-at="2023-12-16T17:09:14 EET" name="Default test" finished-at="2023-12-16T17:09:40 EET" duration-ms="25690">
+      <class name="Almosafer.TestCases">
+        <test-method is-config="true" signature="Setup()[pri:0, instance:Almosafer.TestCases@2453f95d]" started-at="2023-12-16T17:09:14 EET" name="Setup" finished-at="2023-12-16T17:09:26 EET" duration-ms="12076" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Setup -->
+        <test-method signature="changeLanguageOfTheWebsite()[pri:0, instance:Almosafer.TestCases@2453f95d]" started-at="2023-12-16T17:09:26 EET" name="changeLanguageOfTheWebsite" finished-at="2023-12-16T17:09:40 EET" duration-ms="13303" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- changeLanguageOfTheWebsite -->
+        <test-method is-config="true" signature="endTest()[pri:0, instance:Almosafer.TestCases@2453f95d]" started-at="2023-12-16T17:09:40 EET" name="endTest" finished-at="2023-12-16T17:09:40 EET" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTest -->
+      </class> <!-- Almosafer.TestCases -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
