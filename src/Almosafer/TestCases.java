@@ -134,9 +134,51 @@ public class TestCases {
 			Item.get(1).click();
 		}
 		
-		WebElement InputVistor=driver.findElement(By.className("tln3e3-1"));
+		WebElement InputVistor = driver.findElement(By.className("tln3e3-1"));
 		Select select = new Select(InputVistor);
-		select.selectByIndex(1);
+		int randomIndexVistor = rand.nextInt(2);
+		select.selectByIndex(randomIndexVistor);
+		
+		WebElement SearchButton = driver.findElement(By.className("sc-1vkdpp9-6"));
+		SearchButton.click();
+
+		Thread.sleep(25000);
+
+		String HotelSearchResult = driver.findElement(By.className("sc-cClmTo")).getText();
+
+		if (driver.getCurrentUrl().contains("ar")) {
+			boolean ActualResult = HotelSearchResult.contains("وجدنا");
+			boolean ExpectedResult = true;
+			Assert.assertEquals(ActualResult, ExpectedResult);
+
+			WebElement Lowestpric = driver.findElement(By.className("kgqEve"));
+			Lowestpric.click();
+
+		} else {
+			boolean ActualResult = HotelSearchResult.contains("found");
+			boolean ExpectedResult = true;
+			Assert.assertEquals(ActualResult, ExpectedResult);
+
+			WebElement Lowestprice = driver.findElement(By.className("eSXwxY"));
+			Lowestprice.click();
+		}
+
+		Thread.sleep(6000);
+
+		WebElement PriceSection = driver.findElement(By.cssSelector(".sc-htpNat.KtFsv.col-9"));
+
+		List<WebElement> Prices = PriceSection.findElements(By.className("Price__Value"));
+
+		for (int i = 0; i < Prices.size(); i++) {
+			System.out.println(Prices.get(i).getText());
+
+			int LowesPrice = Integer.parseInt(Prices.get(0).getText());
+			int highestPrice = Integer.parseInt(Prices.get(Prices.size() - 1).getText());
+
+			Assert.assertEquals(highestPrice > LowesPrice, true);
+
+		}
+
 	}
 	
 	@AfterTest
