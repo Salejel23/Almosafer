@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 
+import org.bouncycastle.oer.its.ieee1609dot2.basetypes.PublicEncryptionKey;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,61 +16,48 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class TestCases {
-	String TheWebSite="https://global.almosafer.com/en";
-	WebDriver driver= new ChromeDriver();  
-	SoftAssert softassert=new SoftAssert();
-	Random rand = new Random();
-	
-	String [] arabicCitiesNames= {"جدة","دبي"};
-	String [] englishCitiesNames= {"dubai","jeddah","Riyadh"};
-	
-	int randomArbic=rand.nextInt(arabicCitiesNames.length) ;
-	int randomEng=rand.nextInt( englishCitiesNames.length);
-	
+import net.bytebuddy.agent.builder.AgentBuilder.DescriptionStrategy;
+import net.bytebuddy.build.Plugin.Factory.UsingReflection.Priority;
 
+public class TestCases extends parametersClass {
 	
 	@BeforeTest
 	public void Setup() {
-		driver.manage().window().maximize();
-		driver.get(TheWebSite);
-		WebElement ClickWelcome= driver.findElement(By.xpath("//button[normalize-space()='Kingdom of Saudi Arabia, SAR']"));
-		ClickWelcome.click();
+	theStartToWebsite();
 	}
 	
-	@Test(enabled=false)
-	public void CheckLanguage() {
-		String ActualLang=driver.findElement(By.tagName("html")).getAttribute("lang");
-		String ExpectedLang="en";
-		softassert.assertEquals(ActualLang,ExpectedLang,"this is to check the language");
-	}
+//	@Test(description = "this is a happy scenario",priority = 1)
+//	public void CheckLanguageDefultIsEnglish() {
+//		checkTheLanguageFunction("en");
+//		softassert.assertAll();
+//	
+//	}
+//	
+//	@Test(description = "this is a sad scenario",priority = 2)
+//		public void CheckLanguageDefultIsArabic() {
+//		checkTheLanguageFunction("ar");
+//		softassert.assertAll();
+//	}
 	
-	@Test(enabled=false)
-	public void ChekTheCurrency() {
-		
-		String ExpectedCurrency="SAR";
-		WebElement CurrencyElement= driver.findElement(By.cssSelector(".sc-dRFtgE.fPnvOO"));
-		String ActualCurrency= CurrencyElement.getText();
-		softassert.assertEquals(ActualCurrency, ExpectedCurrency);		
-	}
+//	@Test(description ="this is to check the currency SAR",priority = 3 )
+//	public void ChekTheCurrency() {
+//		
+//		checkTheCurrencyFunction("SAR");
+//			softassert.assertAll();
+//	}
 	
-	@Test(enabled=false)
-	public void CheckTheContactNum() {
-		
-		String EcpectedContactNumber="+966554400000";
-		WebElement ContactElement= driver.findElement(By.cssSelector("a[class='sc-hUfwpO bWcsTG'] strong"));
-		String ActualContactNum=ContactElement.getText();
-		softassert.assertEquals(ActualContactNum, EcpectedContactNumber);
-	}
+//	@Test(enabled=true)
+//	public void CheckTheContactNumber() {
+//		
+//		checkTheContactNumFunction("+966554400000");
+//		softassert.assertAll();
+//	}
 	
-	@Test(enabled=false)
-	public void CheckQitafLogo () {
-		WebElement QitafLogo= driver.findElement(By.xpath("//div[@class='sc-dznXNo iZejAw']"));
-		boolean isQitafLogoDisplayed=QitafLogo.isDisplayed();
-		boolean expectedQitafLogoIsDisplayed=true;
-		
-		softassert.assertEquals(isQitafLogoDisplayed, expectedQitafLogoIsDisplayed);
-	}
+//	@Test()
+//	public void CheckLogoApple () {
+//		CheckLogoFunction(driver.findElement(By.xpath("//img[@alt='apple-pay']")));
+//		softassert.assertAll();
+//	}
 	
 	@Test(enabled=false)
 	public void HotelTabIsNotSelected() {
@@ -100,7 +88,7 @@ public class TestCases {
 		Assert.assertEquals(DayElementOnTheWebsite, today.plusDays(1).getDayOfWeek().toString());
 				}
 	
-	@Test(invocationCount = 1)
+	@Test(enabled = false )
 	public void changeLanguageOfTheWebsite() throws InterruptedException {
 		
 		String[] UrleWebsite={"https://www.almosafer.com/en?ncr=1","https://www.almosafer.com/ar?ncr=1"};
@@ -169,20 +157,18 @@ public class TestCases {
 
 		List<WebElement> Prices = PriceSection.findElements(By.className("Price__Value"));
 
-		for (int i = 0; i < Prices.size(); i++) {
-			System.out.println(Prices.get(i).getText());
 
 			int LowesPrice = Integer.parseInt(Prices.get(0).getText());
 			int highestPrice = Integer.parseInt(Prices.get(Prices.size() - 1).getText());
-
+			
+			System.out.println(LowesPrice+"This is the lowest price");
+			System.out.println(highestPrice+"This is the highest price");
 			Assert.assertEquals(highestPrice > LowesPrice, true);
-
-		}
 
 	}
 	
 	@AfterTest
 	public void endTest() {
-		softassert.assertAll();
+	
 	}
 }

@@ -5,9 +5,10 @@
     <classes>
       <class name="Almosafer.TestCases">
         <methods>
-          <include name="changeLanguageOfTheWebsite"/>
           <include name="endTest"/>
+          <include name="ChekTheCurrency"/>
           <include name="Setup"/>
+          <include name="CheckLanguageDefultIsArabic"/>
         </methods>
       </class> <!-- Almosafer.TestCases -->
     </classes>
